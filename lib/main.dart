@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:task_manager/create_pages/create_page.dart';
+import 'package:task_manager/screen/create_task/create_task.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -12,12 +13,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Task manager',
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
-
           primarySwatch: Colors.blue,
         ),
-        home: const CreatePage()
-    );
+        home: const CreateTaskScreen());
   }
 }
