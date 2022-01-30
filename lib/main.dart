@@ -1,24 +1,60 @@
+import 'dart:async';
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
-import 'package:task_manager/screens/home_page.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:logger/logger.dart';
+import 'package:sizer/sizer.dart';
+import 'package:task_manager/src/presentation/routes/main_navigation.dart';
+import 'package:task_manager/src/presentation/theme/app_theme.dart';
+import 'src/presentation/cubit/navigation_cubit.dart';
 
-void main(){
-  runApp(
-    Material()
-  );
+void main() {
+  var log = Logger();
+  runZonedGuarded(() {
+    runApp(
+      DevicePreview(
+        enabled: false,
+        builder: (context) => const MyApp(),
+      ),
+    );
+  }, (error, stacktrace) {
+    log.e(error);
+    log.v(stacktrace);
+  });
 }
 
-class Material extends StatefulWidget {
-  const Material({Key? key}) : super(key: key);
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
 
-  @override
-  _MaterialState createState() => _MaterialState();
-}
-
-class _MaterialState extends State<Material> {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: HomePage(),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        return OrientationBuilder(
+          builder: (context, orientation) {
+            return Sizer(
+              builder: (context, constraints, orientation) {
+                return MultiBlocProvider(
+                  providers: [
+                    BlocProvider<NavigationCubit>(
+                      create: (context) => NavigationCubit(),
+                    )
+                  ],
+                  child: MaterialApp(
+                    title: 'Task Manager',
+                    theme: AppTheme.lightTeme,
+                    darkTheme: AppTheme.darkTheme,
+                    debugShowCheckedModeBanner: false,
+                    themeMode: ThemeMode.light,
+                    initialRoute: MainNavigationRouteNames.splashScreen,
+                    routes: MainNavigationRoute.routes,
+                  ),
+                );
+              },
+            );
+          },
+        );
+      },
     );
   }
 }
