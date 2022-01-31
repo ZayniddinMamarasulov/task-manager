@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:task_manager/assets/colors/app_colors.dart';
 import 'package:task_manager/models/task.dart';
+import 'package:task_manager/theme/app_colors.dart';
 
 class MyTasksWidget extends StatelessWidget {
   const MyTasksWidget({
