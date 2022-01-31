@@ -180,7 +180,7 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                           return ChoiceChip(
                             label: SizedBox(
                               height: 30,
-                              width: 80,
+                              width: 82,
                               child: Center(
                                 child: Text(
                                   topic.title,
