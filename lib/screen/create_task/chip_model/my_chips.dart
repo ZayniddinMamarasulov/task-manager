@@ -13,7 +13,6 @@ class MyTopic {
     MyTopic('Design'),
     MyTopic('Meeting'),
     MyTopic('Coding'),
-    MyTopic('Meeting'),
     MyTopic('BDE'),
     MyTopic('Testing'),
     MyTopic('Quic call'),
