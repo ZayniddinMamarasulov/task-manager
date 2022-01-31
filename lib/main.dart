@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logger/logger.dart';
 import 'package:sizer/sizer.dart';
+import 'package:task_manager/src/presentation/cubit/task_type_cubit.dart';
 import 'package:task_manager/src/presentation/routes/main_navigation.dart';
 import 'package:task_manager/src/presentation/theme/app_theme.dart';
 import 'src/presentation/cubit/navigation_cubit.dart';
@@ -38,7 +39,9 @@ class MyApp extends StatelessWidget {
                   providers: [
                     BlocProvider<NavigationCubit>(
                       create: (context) => NavigationCubit(),
-                    )
+                    ),
+                    BlocProvider<TaskTypeCubit>(
+                        create: (context) => TaskTypeCubit()),
                   ],
                   child: MaterialApp(
                     title: 'Task Manager',

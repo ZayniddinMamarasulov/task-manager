@@ -11,6 +11,7 @@ class AppTheme {
       primaryColorDark: AppColors.lightbottomGradient,
       unselectedWidgetColor: AppColors.lightNoSelectColor,
       indicatorColor: AppColors.lightTextColor,
+      cardColor: AppColors.lightButtomBackgroundColor,
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
         backgroundColor: AppColors.lightBackgroundColor,
         selectedItemColor: AppColors.lightTextColor,
@@ -27,6 +28,16 @@ class AppTheme {
           fontSize: 16,
           fontWeight: FontWeight.w400,
         ),
+        headline1: const TextStyle(
+          color: Colors.black,
+          fontSize: 16,
+          fontWeight: FontWeight.w700,
+        ),
+        headline2: TextStyle(
+          color: AppColors.lightButtomTextColor,
+          fontSize: 16,
+          fontWeight: FontWeight.w300,
+        ),
       ));
 
   static final darkTheme = ThemeData(
@@ -36,16 +47,27 @@ class AppTheme {
     primaryColorLight: AppColors.darkTopGradient,
     primaryColorDark: AppColors.darkTopGradient,
     indicatorColor: AppColors.darkTextColor,
+    cardColor: AppColors.darkButtomBackgroundColor,
     textTheme: TextTheme(
       bodyText1: TextStyle(
-        color: Colors.amber,
-        fontSize: 60,
+        color: AppColors.darkTextColor,
+        fontSize: 30,
         fontWeight: FontWeight.w700,
       ),
       bodyText2: TextStyle(
-        color: AppColors.darkTextColor,
-        fontSize: 26,
+        color: AppColors.lightButtomTextColor,
+        fontSize: 16,
         fontWeight: FontWeight.w400,
+      ),
+      headline1: const TextStyle(
+        color: Colors.black,
+        fontSize: 16,
+        fontWeight: FontWeight.w700,
+      ),
+      headline2: TextStyle(
+        color: AppColors.darkButtomTextColor,
+        fontSize: 16,
+        fontWeight: FontWeight.w300,
       ),
     ),
   );
