@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:task_manager/theme/app_colors.dart';
 
 import 'chip_model/my_chips.dart';
 
@@ -18,7 +17,6 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
   List<MyTopic> topics = MyTopic.topics;
 
   List<MyTopic> selectTopics = [];
-
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -54,7 +52,7 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                               fontSize: 20,
                               letterSpacing: 1.2,
                               fontWeight: FontWeight.w700,
-                              color: Colors.white,
+                              color: Colors.black,
                             ),
                           ),
                           IconButton(
@@ -92,11 +90,11 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                 ),
                 const SizedBox(height: 16),
                 Container(
-                  height: size.height * 0.715,
+                  height: size.height * 0.6,
                   width: size.width,
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
-                      color: Colors.white,
+                    color: Colors.white,
                       borderRadius: BorderRadius.circular(16)),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -106,56 +104,26 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                         children: [
                           Column(
                             children: const [
-                              Text(
-                                "Start Time",
-                                style: TextStyle(
-                                  fontSize: 22,
-                                  color: Color(AppColors.greyColor),
-                                ),
-                              ),
+                              Text("Start Time"),
                               SizedBox(height: 8),
-                              Text(
-                                "01:22 pm",
-                                style: TextStyle(
-                                  fontSize: 32,
-                                  color: Color(AppColors.darkColor),
-                                ),
-                              ),
+                              Text("01:22 pm"),
                             ],
                           ),
                           Column(
                             children: const [
-                              Text(
-                                "End Time",
-                                style: TextStyle(
-                                  fontSize: 22,
-                                  color: Color(AppColors.greyColor),
-                                ),
-                              ),
+                              Text("End Time"),
                               SizedBox(height: 8),
-                              Text(
-                                "03:20 pm",
-                                style: TextStyle(
-                                  fontSize: 32,
-                                  color: Color(AppColors.darkColor),
-                                ),
-                              ),
+                              Text("03:20 pm"),
                             ],
                           ),
-                          const SizedBox(width: 46)
+                          const SizedBox(width: 56)
                         ],
                       ),
                       const Divider(
                         color: Colors.black45,
                       ),
                       const SizedBox(height: 16),
-                      const Text(
-                        "Description",
-                        style: TextStyle(
-                          fontSize: 22,
-                          color: Color(AppColors.greyColor),
-                        ),
-                      ),
+                      const Text("Description"),
                       const SizedBox(height: 8),
                       TextFormField(
                         controller: _descController,
@@ -164,44 +132,26 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                             filled: true, fillColor: Colors.grey.shade300),
                       ),
                       const SizedBox(height: 16),
-                      const Text(
-                        "Category",
-                        style: TextStyle(
-                          fontSize: 22,
-                          color: Color(AppColors.greyColor),
-                        ),
-                      ),
-                      const SizedBox(height: 27),
                       Wrap(
                         runSpacing: 12,
-                        spacing: 16,
+                        spacing: 24,
                         children: List.generate(topics.length, (index) {
                           var topic = topics[index];
                           return ChoiceChip(
-                            label: SizedBox(
-                              height: 30,
-                              width: 82,
-                              child: Center(
-                                child: Text(
-                                  topic.title,
-                                  style: TextStyle(
-                                    color: topic.isSelected
-                                        ? Colors.white
-                                        : Colors.black,
-                                    fontSize: 16,
-                                  ),
-                                ),
-                              ),
+                            label: Text(
+                              topic.title,
+                              style: TextStyle(
+                                  color: topic.isSelected
+                                      ? Colors.white
+                                      : Colors.black),
                             ),
-                            selectedColor:
-                                const Color(AppColors.bottomGradient),
-                            disabledColor: const Color(AppColors.whiteColor),
+                            selectedColor: Colors.blue.shade800,
                             selected: topic.isSelected,
                             shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(50),
+                              borderRadius: BorderRadius.circular(24),
                             ),
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 8, vertical: 12),
+                                horizontal: 16, vertical: 12),
                             pressElevation: 0,
                             onSelected: (bool newValue) {
                               setState(() {
@@ -211,6 +161,7 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                                 } else {
                                   selectTopics.remove(topic);
                                 }
+
                                 // tanlanganlar
                                 debugPrint(selectTopics.toString() +
                                     "selected Category");
@@ -219,36 +170,6 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                           );
                         }),
                       ),
-                      const SizedBox(
-                        height: 40,
-                      ),
-                      InkWell(
-                        onTap: () {},
-                        child: Container(
-                          height: 80,
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(50),
-                            gradient: const LinearGradient(
-                                colors: [
-                                  Color(AppColors.topGradient),
-                                  Color(AppColors.bottomGradient)
-                                ],
-                                begin: Alignment.topCenter,
-                                end: Alignment.bottomCenter),
-                          ),
-                          child: const Center(
-                            child: Text(
-                              "Create Task",
-                              style: TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.w700,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        ),
-                      )
                     ],
                   ),
                 )
