@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:task_manager/theme/app_colors.dart';
 
 import 'chip_model/my_chips.dart';
 
@@ -94,7 +95,6 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                   width: size.width,
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
-                    color: Colors.white,
                       borderRadius: BorderRadius.circular(16)),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

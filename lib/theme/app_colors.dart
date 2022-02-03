@@ -1,3 +1,4 @@
+import 'dart:ui';
 class AppColors{
   static const backgroundColor = 0xFFF2F5FF;
   static const topGradient = 0xFF9C2CF3;
