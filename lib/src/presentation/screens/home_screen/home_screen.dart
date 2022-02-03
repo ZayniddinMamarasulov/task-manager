@@ -3,9 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/parser.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:task_manager/src/presentation/cubit/task_type_cubit.dart';
 import 'package:task_manager/src/presentation/cubit/task_type_items.dart';
 import 'package:task_manager/src/presentation/cubit/task_type_state.dart';
+import 'package:task_manager/src/presentation/screens/home_screen/widgets/task_list.dart';
 import 'package:task_manager/src/presentation/theme/app_theme.dart';
 
 import 'widgets/column_text.dart';
@@ -20,6 +22,9 @@ class HomeScree extends StatefulWidget {
 }
 
 class _HomeScreeState extends State<HomeScree> {
+  final ScrollController _controller = ScrollController();
+  final controller = PageController();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -126,7 +131,30 @@ class _HomeScreeState extends State<HomeScree> {
                   );
                 },
               ),
-            )
+            ),
+            SizedBox(height: 12),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SmoothPageIndicator(
+                  controller: controller,
+                  count: 3,
+                  effect: const ExpandingDotsEffect(
+                    activeDotColor: Colors.deepPurple,
+                    dotHeight: 10,
+                    dotWidth: 10,
+                  ),
+                ),
+              ],
+            ),
+            const Padding(
+              padding: EdgeInsets.only(top: 12.0, bottom: 12.0),
+              child: Text(
+                "Progress",
+                style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold),
+              ),
+            ),
+            const TaskList(),
           ],
         ),
       ),

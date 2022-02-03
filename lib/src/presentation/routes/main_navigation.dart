@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
+import 'package:task_manager/second_page/custom_calendar.dart';
+import 'package:task_manager/second_page/second_page.dart';
 import 'package:task_manager/src/presentation/screens/main_screen/main_screen.dart';
 import 'package:task_manager/src/presentation/screens/splash_screen/splash_screen.dart';
+import 'package:table_calendar/table_calendar.dart';
 
 abstract class MainNavigationRouteNames {
   static const mainScreen = "/main";
@@ -19,5 +22,6 @@ class MainNavigationRoute {
   static final routes = <String, Widget Function(BuildContext)>{
     MainNavigationRouteNames.splashScreen: (context) => const SplashScreen(),
     MainNavigationRouteNames.mainScreen: (context) => const MainScreen(),
+    MainNavigationRouteNames.taskCalenderScreen: (context) => TasksPage(),
   };
 }

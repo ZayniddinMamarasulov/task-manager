@@ -16,6 +16,5 @@ class MyTopic {
     MyTopic('BDE'),
     MyTopic('Testing'),
     MyTopic('Quic call'),
-
   ];
 }

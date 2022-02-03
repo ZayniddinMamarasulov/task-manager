@@ -38,6 +38,11 @@ class AppTheme {
           fontSize: 16,
           fontWeight: FontWeight.w300,
         ),
+        subtitle1: TextStyle(
+          color: AppColors.lightButtomTextColor,
+          fontSize: 22,
+          fontWeight: FontWeight.w300,
+        ),
       ));
 
   static final darkTheme = ThemeData(
@@ -67,6 +72,11 @@ class AppTheme {
       headline2: TextStyle(
         color: AppColors.darkButtomTextColor,
         fontSize: 16,
+        fontWeight: FontWeight.w300,
+      ),
+     subtitle1: TextStyle(
+        color: AppColors.darkButtomTextColor,
+        fontSize: 22.0,
         fontWeight: FontWeight.w300,
       ),
     ),

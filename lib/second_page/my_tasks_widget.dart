@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:task_manager/models/task.dart';
+import 'package:task_manager/src/presentation/screens/create_task_screen/create_task_screen.dart';
 import 'package:task_manager/theme/app_colors.dart';
 
 class MyTasksWidget extends StatelessWidget {
@@ -26,7 +27,10 @@ class MyTasksWidget extends StatelessWidget {
                     style: TextStyle(fontSize: 32, fontWeight: FontWeight.w600),
                   ),
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(
+                          builder: (context) =>const CreateTaskScreen()));
+                    },
                     child: Container(
                         height: 48,
                         width: 110,
@@ -45,10 +49,10 @@ class MyTasksWidget extends StatelessWidget {
                         child: const Text(
                           '+  Add Task',
                           style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.white,
-                          ),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                              ),
                         )),
                   ),
                 ],
@@ -91,7 +95,7 @@ class MyTasksWidget extends StatelessWidget {
                                   ),
                                 ),
                                 child: SvgPicture.asset(
-                                  'lib/assets/icons/ic_calendar.svg',
+                                  'assets/icons/ic_calendar.svg',
                                   height: 25,
                                   width: 30,
                                 ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:task_manager/second_page/second_page.dart';
 import 'package:task_manager/src/presentation/cubit/navigation_cubit.dart';
 import 'package:task_manager/src/presentation/cubit/navigation_state.dart';
 import 'package:task_manager/src/presentation/screens/home_screen/home_screen.dart';
@@ -27,7 +28,7 @@ class _MainScreenState extends State<MainScreen> {
           if (state.navbarItem == NavbarItem.home) {
             return HomeScree();
           } else if (state.navbarItem == NavbarItem.taskCalender) {
-            return TaskCalenderScreen();
+            return TasksPage();
           } else if (state.navbarItem == NavbarItem.notification) {
             return NotificationScreen();
           } else if (state.navbarItem == NavbarItem.search) {

@@ -51,7 +51,7 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                           const Text(
                             "Create a Task",
                             style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 5,
                               letterSpacing: 1.2,
                               fontWeight: FontWeight.w700,
                               color: Colors.white,
@@ -225,7 +225,7 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                       InkWell(
                         onTap: () {},
                         child: Container(
-                          height: 80,
+                          height: 56,
                           width: double.infinity,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(50),
