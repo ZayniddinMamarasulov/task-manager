@@ -15,3 +15,5 @@ class Task {
     Task(title: 'Test app', date: '25.04.2022'),
   ];
 }
+
+enum TaskTypeItems { myTask, inProgress, completed }

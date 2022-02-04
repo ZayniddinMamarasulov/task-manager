@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:task_manager/assets/colors/app_colors.dart';
 import 'package:task_manager/models/task.dart';
+import 'package:task_manager/ui/add_task_page/create_task_page.dart';
+import 'package:task_manager/ui/theme/app_colors.dart';
 
 class MyTasksWidget extends StatelessWidget {
   const MyTasksWidget({
@@ -17,7 +18,7 @@ class MyTasksWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 48),
+              padding: const EdgeInsets.only(top: 36),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -26,19 +27,20 @@ class MyTasksWidget extends StatelessWidget {
                     style: TextStyle(fontSize: 32, fontWeight: FontWeight.w600),
                   ),
                   InkWell(
-                    onTap: () {},
+                    onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => CreateTaskPage())),
                     child: Container(
                         height: 48,
                         width: 110,
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(32),
-                          gradient: const LinearGradient(
+                          gradient: LinearGradient(
                             begin: Alignment.topRight,
                             end: Alignment.bottomRight,
                             colors: [
-                              Color(AppColors.topGradient),
-                              Color(AppColors.bottomGradient),
+                              AppColors.lightbottomGradient,
+                              AppColors.lightTopGradient,
                             ],
                           ),
                         ),
@@ -81,17 +83,17 @@ class MyTasksWidget extends StatelessWidget {
                                 padding: const EdgeInsets.all(10),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(16),
-                                  gradient: const LinearGradient(
+                                  gradient: LinearGradient(
                                     begin: Alignment.topRight,
                                     end: Alignment.bottomRight,
                                     colors: [
-                                      Color(AppColors.topGradient),
-                                      Color(AppColors.bottomGradient),
+                                      AppColors.lightbottomGradient,
+                                      AppColors.lightTopGradient,
                                     ],
                                   ),
                                 ),
                                 child: SvgPicture.asset(
-                                  'lib/assets/icons/ic_calendar.svg',
+                                  'assets/icons/ic_calendar.svg',
                                   height: 25,
                                   width: 30,
                                 ),
