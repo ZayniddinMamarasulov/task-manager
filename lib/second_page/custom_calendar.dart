@@ -12,7 +12,6 @@ class CustomCalendar extends StatefulWidget {
 
 class _CustomCalendarState extends State<CustomCalendar> {
   var _calendarFormat = CalendarFormat.week;
-
   var focusedDay = DateTime.now();
 
   @override
