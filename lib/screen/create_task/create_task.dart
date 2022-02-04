@@ -23,6 +23,7 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
     final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
+        backgroundColor:  const Color(AppColors.backgroundColor),
         body: SingleChildScrollView(
           child: Container(
             alignment: Alignment.bottomCenter,
@@ -31,7 +32,8 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                   image: AssetImage(
                     "assets/images/bg_image.png",
                   ),
-                  fit: BoxFit.cover),
+                   fit: BoxFit.cover
+    ),
             ),
             child: Column(
               children: [
@@ -65,7 +67,7 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                       const Text(
                         "Name",
                         style: TextStyle(
-                          fontSize: 12,
+                          fontSize: 12.13,
                           fontWeight: FontWeight.w400,
                           color: Colors.white,
                         ),
@@ -78,7 +80,7 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                       const Text(
                         "Date",
                         style: TextStyle(
-                          fontSize: 12,
+                          fontSize: 12.13,
                           fontWeight: FontWeight.w400,
                           color: Colors.white,
                         ),
@@ -95,7 +97,8 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                   width: size.width,
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16)),
+                      color: const Color(AppColors.backgroundColor),
+                      borderRadius: BorderRadius.circular(10.18)),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -104,34 +107,36 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                         children: [
                           Column(
                             children: const [
-                              Text("Start Time"),
+                              Text("Start Time",style: TextStyle(fontSize: 14.13,fontWeight: FontWeight.w600, color:  Color(AppColors.greyColor),),),
                               SizedBox(height: 8),
-                              Text("01:22 pm"),
+                              Text("01:22 pm",style: TextStyle(fontSize: 20.13,fontWeight: FontWeight.bold, color:  Color(AppColors.darkColor),),),
                             ],
                           ),
                           Column(
                             children: const [
-                              Text("End Time"),
+                              Text("End Time",style: TextStyle(fontSize: 14.13,fontWeight: FontWeight.w600, color:  Color(AppColors.greyColor),),),
                               SizedBox(height: 8),
-                              Text("03:20 pm"),
+                              Text("03:20 pm",style: TextStyle(fontSize: 20.13,fontWeight: FontWeight.bold, color:  Color(AppColors.darkColor),),),
                             ],
                           ),
                           const SizedBox(width: 56)
                         ],
                       ),
                       const Divider(
-                        color: Colors.black45,
+                          color:  Color(AppColors.greyColor),
                       ),
                       const SizedBox(height: 16),
-                      const Text("Description"),
+                      const Text("Description",style: TextStyle(fontSize: 14.13,fontWeight: FontWeight.w600, color:  Color(AppColors.greyColor),),),
                       const SizedBox(height: 8),
                       TextFormField(
                         controller: _descController,
                         maxLines: 5,
-                        decoration: InputDecoration(
-                            filled: true, fillColor: Colors.grey.shade300),
+                        decoration: const InputDecoration(
+                            filled: true, fillColor: Color(AppColors.backgroundColor)),
                       ),
                       const SizedBox(height: 16),
+                      Text("Category",style: TextStyle(fontSize: 14.13,fontWeight: FontWeight.w600, color:  const Color(AppColors.greyColor),)),
+                      SizedBox(height: 12,),
                       Wrap(
                         runSpacing: 12,
                         spacing: 24,
@@ -141,12 +146,17 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                             label: Text(
                               topic.title,
                               style: TextStyle(
+                                fontSize: 12.65,
+                                  fontWeight: FontWeight.w600,
                                   color: topic.isSelected
                                       ? Colors.white
-                                      : Colors.black),
+                                      : const Color(AppColors.darkColor)),
                             ),
-                            selectedColor: Colors.blue.shade800,
-                            selected: topic.isSelected,
+                            // selectedColor: Colors.blue.shade800,
+                            selectedColor: topic.isSelected
+                                 ?const Color(AppColors.greyColor)
+                                :const Color(AppColors.greyColor),
+                             selected: topic.isSelected,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(24),
                             ),
@@ -161,10 +171,6 @@ class _CreateTaskScreenState extends State<CreateTaskScreen> {
                                 } else {
                                   selectTopics.remove(topic);
                                 }
-
-                                // tanlanganlar
-                                debugPrint(selectTopics.toString() +
-                                    "selected Category");
                               });
                             },
                           );
