@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class CardProjectList extends StatelessWidget {
   const CardProjectList({
@@ -60,7 +59,7 @@ class CardProjectList extends StatelessWidget {
                         const SizedBox(width: 10),
                         Text(
                           "Project 1",
-                          style: GoogleFonts.poppins(
+                          style: TextStyle(
                             fontSize: 20,
                             letterSpacing: 1,
                             fontWeight: FontWeight.w500,
@@ -70,18 +69,22 @@ class CardProjectList extends StatelessWidget {
                       ],
                     ),
                     Text("Front-End Develpment",
-                        style: GoogleFonts.poppins(
+                        style: TextStyle(
                           fontSize: 20,
                           letterSpacing: 1.2,
                           fontWeight: FontWeight.w800,
                           color: Colors.white,
                         )),
                     Text("October, 20,2020",
-                        style: GoogleFonts.poppins(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w300,
-                          color: Colors.white,
-                        )),
+                        // style: GoogleFonts.poppins(
+                        //   fontSize: 18,
+                        //   fontWeight: FontWeight.w300,
+                        //   color: Colors.white,
+                        // )),
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w300,
+                            color: Colors.white)),
                   ],
                 ),
               ),

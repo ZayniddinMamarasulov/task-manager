@@ -9,15 +9,16 @@ Widget columnText(context, text1, text2) {
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        customText(
-          context,
+        // customText(
+        Text(
           text1,
-          const TextStyle(
+          style: const TextStyle(
             fontSize: 32,
             fontWeight: FontWeight.w600,
           ),
         ),
-        customText(context, text2, Theme.of(context).textTheme.bodyText2),
+        // customText(context, text2, Theme.of(context).textTheme.bodyText2),
+        Text(text2, style: Theme.of(context).textTheme.bodyText2),
       ],
     ),
   );
