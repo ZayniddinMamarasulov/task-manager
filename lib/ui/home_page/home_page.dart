@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:task_manager/models/task.dart';
+import 'package:task_manager/services/database_helper.dart';
+import 'package:task_manager/ui/components/task_item.dart';
 import 'package:task_manager/ui/home_page/widgets/card_project_list.dart';
 import 'package:task_manager/ui/home_page/widgets/column_text.dart';
 import 'package:task_manager/ui/home_page/widgets/custom_app_bar.dart';
 import 'package:task_manager/ui/home_page/widgets/task_type_list.dart';
-import 'package:task_manager/ui/theme/app_colors.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -42,8 +42,27 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class ProgressTasks extends StatelessWidget {
+class ProgressTasks extends StatefulWidget {
   const ProgressTasks({Key? key}) : super(key: key);
+
+  @override
+  State<ProgressTasks> createState() => _ProgressTasksState();
+}
+
+class _ProgressTasksState extends State<ProgressTasks> {
+  late Future<List<Task>> tasks;
+
+  _updateTasks() {
+    setState(() {
+      tasks = DatabaseHelper.instance.getTaskList();
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _updateTasks();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,81 +78,23 @@ class ProgressTasks extends StatelessWidget {
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
             ),
           ),
-          ListView.builder(
-              shrinkWrap: true,
-              physics: const BouncingScrollPhysics(),
-              itemCount: Task.tasks.length,
-              itemBuilder: (context, index) {
-                final task = Task.tasks[index];
-                return Container(
-                  height: 100,
-                  width: double.infinity,
-                  margin: const EdgeInsets.only(top: 20),
-                  padding: const EdgeInsets.only(left: 16, right: 4),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          Container(
-                            height: 48,
-                            width: 48,
-                            padding: const EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(16),
-                              gradient: LinearGradient(
-                                begin: Alignment.topRight,
-                                end: Alignment.bottomRight,
-                                colors: [
-                                  AppColors.lightbottomGradient,
-                                  AppColors.lightTopGradient,
-                                ],
-                              ),
-                            ),
-                            child: SvgPicture.asset(
-                              'assets/icons/ic_calendar.svg',
-                              height: 25,
-                              width: 30,
-                            ),
-                          ),
-                          const SizedBox(width: 16),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                task.title,
-                                style: const TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              ),
-                              const SizedBox(height: 6),
-                              Text(
-                                task.date,
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.grey,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.more_vert,
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ],
-                  ),
-                );
+          FutureBuilder(
+              future: tasks,
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                if (!snapshot.hasData) {
+                  return const Center(child: CircularProgressIndicator());
+                }
+                if (snapshot.data.length == 0) {
+                  return const Center(child: Text("no data"));
+                }
+                return ListView.builder(
+                    shrinkWrap: true,
+                    physics: const BouncingScrollPhysics(),
+                    itemCount: snapshot.data.length,
+                    itemBuilder: (context, index) {
+                      final task = snapshot.data[index];
+                      return TaskItem(task: task);
+                    });
               }),
         ],
       ),

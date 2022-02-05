@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:task_manager/ui/add_task_page/widgets/category_tasks.dart';
 import 'package:task_manager/ui/add_task_page/widgets/input_description_widget.dart';
-
 import 'widgets/input_start_and_end_time_widget.dart';
 
 class InputSomeInfoTaskWidget extends StatelessWidget {

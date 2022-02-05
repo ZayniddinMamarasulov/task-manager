@@ -43,7 +43,7 @@ class _TaskCalendarPageState extends State<TaskCalendarPage> {
             ),
           ),
           CustomCalendar(locale: locale),
-          const MyTasksWidget(),
+          MyTasksWidget(),
         ],
       ),
     );
