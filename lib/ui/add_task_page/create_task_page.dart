@@ -6,9 +6,6 @@ import 'package:task_manager/services/database_helper.dart';
 import 'package:task_manager/ui/add_task_page/widgets/default_app_bar.dart';
 import 'package:task_manager/ui/theme/app_colors.dart';
 
-import 'custom_input_widget.dart';
-import 'input_some_info_task_widget.dart';
-
 class CreateTaskPage extends StatefulWidget {
   const CreateTaskPage({Key? key}) : super(key: key);
 
@@ -74,9 +71,10 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _inputWidgets(task: 'Title', controller: taskController, func: () {}),
           _inputWidgets(
-              task: 'Date',
+              task: 'Title *', controller: taskController, func: () {}),
+          _inputWidgets(
+              task: 'Date *',
               controller: dateController,
               func: () {
                 _showDatePick(context);
@@ -199,7 +197,7 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'Description',
+            'Description *',
             style: TextStyle(
               fontSize: 16,
               color: Colors.grey.shade400,
@@ -299,6 +297,16 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
   _createTaskBtn() {
     return InkWell(
       onTap: () {
+        if (taskController.text.isEmpty ||
+            descriptionController.text.isEmpty ||
+            dateController.text.isEmpty) {
+          const snackBar = SnackBar(
+            content: Text('Iltimos * belgili maydonlarni to\'ldiring'),
+            backgroundColor: Colors.red,
+          );
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+          return;
+        }
         _saveTask();
       },
       child: Container(
