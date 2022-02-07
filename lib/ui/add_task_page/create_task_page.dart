@@ -4,22 +4,40 @@ import 'package:task_manager/models/category_task.dart';
 import 'package:task_manager/models/task.dart';
 import 'package:task_manager/services/database_helper.dart';
 import 'package:task_manager/ui/add_task_page/widgets/default_app_bar.dart';
+import 'package:task_manager/ui/home_page/home_page.dart';
+import 'package:task_manager/ui/main_screen/main_screen.dart';
 import 'package:task_manager/ui/theme/app_colors.dart';
 
 class CreateTaskPage extends StatefulWidget {
-  const CreateTaskPage({Key? key}) : super(key: key);
+  final Task? task;
+
+  const CreateTaskPage({Key? key, this.task}) : super(key: key);
 
   @override
   State<CreateTaskPage> createState() => _CreateTaskPageState();
 }
 
 class _CreateTaskPageState extends State<CreateTaskPage> {
+  String buttonTitle = "Create task";
   DateTime _date = DateTime.now();
   final taskController = TextEditingController();
   final dateController = TextEditingController();
   final startTimeController = TextEditingController();
   final endTimeController = TextEditingController();
   final descriptionController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.task != null) {
+      buttonTitle = "Update task";
+      taskController.text = widget.task!.title!;
+      dateController.text = DateFormat('dd-MM-yyyy').format(widget.task!.date!);
+      startTimeController.text = widget.task!.startTime!;
+      endTimeController.text = widget.task!.endTime!;
+      descriptionController.text = widget.task!.description!;
+    }
+  }
 
   _saveTask() {
     Task currentTask = Task(
@@ -29,9 +47,22 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
         startTime: startTimeController.text,
         endTime: endTimeController.text);
 
-    DatabaseHelper.instance
-        .insert(currentTask)
-        .whenComplete(() => Navigator.pop(context));
+    if (widget.task != null) {
+      currentTask.id = widget.task!.id!;
+      DatabaseHelper.instance
+          .update(currentTask)
+          .whenComplete(() => Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) => MainScreen(),
+                ),
+                (route) => false,
+              ));
+    } else {
+      DatabaseHelper.instance
+          .insert(currentTask)
+          .whenComplete(() => Navigator.pop(context));
+    }
   }
 
   @override
@@ -324,9 +355,9 @@ class _CreateTaskPageState extends State<CreateTaskPage> {
               ],
             ),
           ),
-          child: const Text(
-            'Create Task',
-            style: TextStyle(
+          child: Text(
+            buttonTitle,
+            style: const TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w600,
               color: Colors.white,

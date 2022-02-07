@@ -27,7 +27,7 @@ class DatabaseHelper {
     _db = await openDatabase(path, version: 1, onOpen: (db) {},
         onCreate: (Database db, int version) async {
       await db.execute("CREATE TABLE $tableTodo ("
-          "$colId INTEGER PRIMARY KEY,"
+          "$colId INTEGER PRIMARY KEY AUTOINCREMENT,"
           "$colTitle TEXT,"
           "$colDescription TEXT,"
           "$colDate TEXT,"

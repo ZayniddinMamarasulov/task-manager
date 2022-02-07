@@ -18,25 +18,27 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Column(
-        children: [
-          const CustomAppBar(),
-          Expanded(
-            child: ListView(
-              physics: const BouncingScrollPhysics(),
-              shrinkWrap: true,
-              children: [
-                SizedBox(height: MediaQuery.of(context).size.height * 0.01),
-                columnText(context, "Hello Rohan!", "Have a nice day."),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.01),
-                TaskTypeList(),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-                const CardProjectList(),
-                const ProgressTasks(),
-              ],
+      child: Material(
+        child: Column(
+          children: [
+            const CustomAppBar(),
+            Expanded(
+              child: ListView(
+                physics: const BouncingScrollPhysics(),
+                shrinkWrap: true,
+                children: [
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+                  columnText(context, "Hello Rohan!", "Have a nice day."),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+                  TaskTypeList(),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                  const CardProjectList(),
+                  const ProgressTasks(),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
